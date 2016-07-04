@@ -1,0 +1,20 @@
+[VHOST-MANAGEMENT SCRIPT HELP TEXT]
+
+vhost --[command args]
+
+Possible commands:
+--list: lists extant vhosts by name
+
+--make [name domain port]: constructs a new tomcat instance, assumes app root is in /home/{name}, connects instance to a worker and a {domain} vhost in apache, restarts httpd. Uses three ports total, two of which are incremented from the one you feed it: given 10010 it will use 10010, 10011, and 10012. You can check this by running `sudo netstat -tulpn` after you have made and then started your app: it should be listening on {port + 2}.
+
+--remove [name]: stops and then destroys a tomcat instance (/home/name remains intact), removes references from worker.properties, deletes vhost from apache, restarts httpd.
+
+--start [name | names | --all]: calls start script for named vhost(s)
+
+--stop [name | names | --all]: calls stop script for named vhost(s)
+
+--restart [name | names | --all]: calls restart script for named vhost(s)
+
+
+
+KNOWN BUG: Due to how tomcat's portion of the start script is implemented, if you go to start an app and something else is already running (another app, say) on one of its three ports, the app will not start, but the start command will report success. Make sure you double-check for overlapping ports before making/starting a new app.
