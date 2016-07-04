@@ -4,7 +4,7 @@ vroot=/usr/share/vhost-manage
 
 function list {
     for dir in /usr/share/vhost/*; do
-        echo ${dir:17:-1}
+        cat $dir/metadata
     done
 }
 

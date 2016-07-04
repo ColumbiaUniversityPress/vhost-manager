@@ -70,4 +70,6 @@ echo "<VirtualHost *:80>
 echo "restarting httpd"
 service httpd --full-restart
 
+echo $appname :: $appdomain :: ${shuport}, ${redport}, ${ajpport} > $apphome/metadata
+
 echo "Complete. To start your app, run 'vhost --start $appname'"
