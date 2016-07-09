@@ -1,6 +1,6 @@
 #!/bin/bash                                                                                                                          
 
-vroot=/usr/share/vhost-manage
+vroot=/usr/share/vhost-manager
 
 function list {
     for dir in /usr/share/vhost/*; do
